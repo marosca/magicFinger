@@ -1,0 +1,418 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"back",
+				"background-repeat"
+			],
+			[
+				"heig",
+				"height"
+			],
+			[
+				"bak",
+				"background-size"
+			],
+			[
+				"heigh",
+				"height"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"backgroun",
+				"background-position"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"text-",
+				"text-indent"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"border",
+				"border-radius"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "js/magicFinger.js",
+			"settings":
+			{
+				"buffer_size": 7339,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/data.json",
+			"settings":
+			{
+				"buffer_size": 1036,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var Actors = {\n	init: function( config ){\n		this.config = config;\n		this.setupTemplates();\n		this.bindEvents();\n		$(\"button\").remove();\n\n		$.ajaxSetup({\n			url: \"index.php\",\n			type: \"POST\"\n		});\n	},\n\n	bindEvents: function(){\n		this.config.letterSelection.on(\"change\", this.fetchActors); // cd seleccionas una letra\n		this.config.actorList.on(\"click\", \"li\", this.displayAuthorInfo); //cd pinchas a un actor\n		this.config.actorInfo.on(\"click\", \"span.close\", this.closeOverlay); // cd pinchas para cerra la info\n	},\n\n	setupTemplates: function(){\n		this.config.actorListTemplate = Handlebars.compile(this.config.actorListTemplate);\n		this.config.actorInfoTemplate = Handlebars.compile(this.config.actorInfoTemplate);\n\n		Handlebars.registerHelper( \"fullName\", function( actor ){\n			return actor.first_name + \" \" + actor.last_name;\n		});\n\n		\n	},\n\n	fetchActors: function(){\n		var self = Actors;\n\n		/*pasa a index.php la letra selecionada por POST y recibe de index.php\n		el objeto un json (de $actors) y es pintado en html con handlebars\n\n		la función $.ajax es equivalente a la funcion $.post\n\n		$.ajax({\n			url: \"index.php\", //esto no hace falta porque está puesto un ajaxSetup\n			type: \"POST\", // igual\n			data: self.config.form.serialize(),\n			dataType: \"json\",\n			success: function( results ){\n				self.config.actorList.append( self.config.actorListTemplate( results ) );\n			}\n		});\n		*/\n		var envio = self.config.form.serialize();\n		\n		$.post(\"index.php\", envio, function( results ){ \n			if(results[0]){\n				self.config.actorList.empty().append( self.config.actorListTemplate( results ) );\n			}else{\n				self.config.actorList.empty().append(\"<li>No hay resulados</li>\");	\n			}\n			\n		}, \"json\");\n	},\n\n	displayAuthorInfo: function(e){\n		\n		var self = Actors;\n		var envio = {actor_id: $(this).data('actor_id')};\n\n		self.config.actorInfo.slideUp(600);\n\n		$.ajax({\n			url: \"index.php\", //esto no hace falta porque está puesto un ajaxSetup\n			type: \"POST\", // igual\n			data: envio\n		}).done( function( results ){\n				self.config.actorInfo.html( self.config.actorInfoTemplate({info: results}) ).slideDown(600);\n		}).progress(function(){\n			console.log(\"on progress\");\n		});\n		e.preventDefault();\n\n	},\n\n	closeOverlay: function(){		\n		//Actors.config.actorInfo.fadeOut(600);\n		$(\"div.actor_info\").slideUp(600);\n	}\n};\n\nActors.init({\n	letterSelection: $(\"#q\"),\n	form: $(\"#actor-selection\"),\n	actorListTemplate: $(\"#actor_list_template\").html(),\n	actorList: $(\"ul.actors_list\"),\n	actorInfo: $(\"div.actor_info\"),\n	actorInfoTemplate: $(\"#actor_info_template\").html()\n});\n\n",
+			"file": "/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-26/js/scripts.js",
+			"file_size": 2675,
+			"file_write_time": 1367129655000000,
+			"settings":
+			{
+				"buffer_size": 2558,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "prueba/index.html",
+			"settings":
+			{
+				"buffer_size": 832,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "prueba/json.php",
+			"settings":
+			{
+				"buffer_size": 843,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/LESS-build/LESS.sublime-build",
+	"command_palette":
+	{
+		"height": 267.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"snip",
+				"Snippet: html"
+			],
+			[
+				"Package Control: L",
+				"Package Control: Install Package"
+			],
+			[
+				"PACK",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"lorem",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-26/index.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/smarty/templates/index.tpl",
+		"/Applications/XAMPP/xamppfiles/htdocs/smarty/smarty.init.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/smarty/content.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/smarty/index.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/pruebaSmarty/index.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/pruebaSmarty/plantilla.tpl",
+		"/Users/marosca/Desktop/untitled.html",
+		"/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-19/indexm.html",
+		"/Users/marosca/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-13/indexm.html",
+		"/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-13/index.html",
+		"/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-13/jquery-1.7.1.js",
+		"/Users/marosca/Library/Application Support/Sublime Text 2/Packages/User/less2css.sublime-settings",
+		"/Users/marosca/Library/Application Support/Sublime Text 2/Packages/Less2Css/README.md",
+		"/Users/marosca/SERVIDOR PHP/prueba/css/prueba.less",
+		"/Users/marosca/SERVIDOR PHP/prueba/css/kaka.less",
+		"/Users/marosca/Library/Application Support/Sublime Text 2/Packages/Prefixr/Default (OSX).sublime-keymap",
+		"/Users/marosca/Library/Application Support/Sublime Text 2/Packages/Prefixr/Default.sublime-commands"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"thumb",
+			"canvas",
+			");\n",
+			"data",
+			"list-s",
+			"images"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "js/magicFinger.js",
+					"settings":
+					{
+						"buffer_size": 7339,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								587,
+								725
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 385.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/data.json",
+					"settings":
+					{
+						"buffer_size": 1036,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								95,
+								65
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/marosca/Dropbox/EclipseProyectos/CurosJquery/lesson-26/js/scripts.js",
+					"settings":
+					{
+						"buffer_size": 2558,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1851,
+								1863
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 661.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "prueba/index.html",
+					"settings":
+					{
+						"buffer_size": 832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "prueba/json.php",
+					"settings":
+					{
+						"buffer_size": 843,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								744,
+								711
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 93.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 202.0,
+	"status_bar_visible": true
+}
