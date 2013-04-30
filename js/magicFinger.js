@@ -19,11 +19,10 @@
 			this.header = config.header;
 			this.can = $("#painting");
 			
-			//this.reedJson();
-			var screenWidth = window.outerWidth,
+			this.reedJson();
+			/*var screenWidth = window.outerWidth,
 				screenHeight = window.outerHeight;
-
-				alert(screenWidth +" x "+ screenHeight);
+				alert(screenWidth +" x "+ screenHeight);*/
 
 		},
 		reedJson: function(){
