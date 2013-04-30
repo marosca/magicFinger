@@ -18,8 +18,12 @@
 			this.tools = config.tools;
 			this.header = config.header;
 			this.can = $("#painting");
+			
+			//this.reedJson();
+			var screenWidth = window.outerWidth,
+				screenHeight = window.outerHeight;
 
-			this.reedJson();
+				alert(screenWidth +" x "+ screenHeight);
 
 		},
 		reedJson: function(){
@@ -62,7 +66,6 @@
 				}
 
 				this.secciones.append(html).css("display", "none").fadeIn();
-		        this.click();
 		        
 		},
 
@@ -81,6 +84,7 @@
 		},
 
 		click: function(){
+
 			var self = this; 
 			this.secciones.find("img").on("click", function(){
 
@@ -167,7 +171,7 @@
 			// dibujar detectando dispositivos táctiles
 
 			if ("ontouchstart" in document.documentElement){
-			
+				
 				canvas.addEventListener('touchstart', function(e){
 					touch = event.targetTouches[0];
 					e.preventDefault();
