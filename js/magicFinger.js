@@ -276,7 +276,8 @@
 	};//fin MagicFinger
 
 	window.myMagic = MagicFinger.init({
-		url : "json_generator.php",
+		//url : "json_generator.php",
+		url: "js/data2.json",
 		template : $("#template"),
 		secciones: $("ul.secciones"),
 		container: $("div.principal"),

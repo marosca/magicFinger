@@ -1,0 +1,44 @@
+{
+    "secciones":[
+        {
+            "num": 1,
+            "img": "photo/peppa pig/peppa pig_home.png",
+            "text": "Peppa Pig",
+            "contenido" :[
+                {
+                    "img": "photo/peppa pig/peppa_thumb.png",
+                    "text": "dibujo de peppa pig",
+                    "canvas": "photo/peppa pig/peppa_canvas.png"
+                },
+                {
+                    "img": "photo/peppa pig/george_thumb.png",
+                    "text": "dibujo de george",
+                    "canvas": "photo/peppa pig/george_canvas.png"
+                },
+                {
+                    "img": "photo/peppa pig/mama_pig_thumb.png",
+                    "text": "dibujo de mama pig",
+                    "canvas": "photo/peppa pig/mama_pig_canvas.png"
+                },
+                {
+                    "img": "photo/peppa pig/papa_pig_thumb.png",
+                    "text": "dibujo de papa pig",
+                    "canvas": "photo/peppa pig/papa_pig_canvas.png"
+                }
+            ]
+        },
+        {   
+            "num": 2,
+            "img": "photo/pocoyo/pocoyo_home.png",
+            "text": "Peppa Pig",
+            "contenido" :[
+                {
+                    "img": "photo/peppa pig/peppa_thumb.png",
+                    "text": "dibujo de peppa pig",
+                    "canvas": "photo/peppa pig/peppa_canvas.png"
+                }
+
+
+        }
+    ]
+}
